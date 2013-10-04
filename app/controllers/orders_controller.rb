@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   	#list of past orders user has
 
     if current_user.present?
-      @order = current_user.orders.all
+      @orders = current_user.orders.all?
     else
       flash[:error] = "You must be signed in"
       redirect_to root_path
