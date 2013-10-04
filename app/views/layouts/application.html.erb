@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Koffee</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script type="text/javascript">
+  // This identifies your website in the createToken call below
+  Stripe.setPublishableKey('<%= STRIPE_KEY %>');
+  // ...
+</script>
+
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<header>
+		<h1><%= link_to "Koffee", root_path %></h1>
+
+		<nav>
+
+			<%= link_to new_order_path do %>
+
+			<strong><%= pluralize basket.size, "item" %> in your basket</strong>
+
+			<% end %>
+
+			<% if current_user.present? %>
+			<%= image_tag current_user.image %>
+			<%= current_user.name %>
+
+			<%= link_to "Orders", orders_path %>
+			<%= link_to "log out", session_path, method: :delete %>
+			<% else %>
+				<a href="/auth/facebook">Sign in with facebook</a>
+				<a href="/auth/twitter">Sign in with twitter</a>
+			<% end %>
+		</nav>
+	</header>
+
+<%= yield %>
+
+</body>
+</html>

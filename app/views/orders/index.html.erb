@@ -1,0 +1,14 @@
+<h2>Your Orders</h2>
+
+
+<% @orders.each do |o|>
+	<%= link_to order_path(o) do %>
+	Order <%= o.id %> - <%= quid o.total_price %>
+
+	<% end %>
+
+</div>
+
+<% end %>
+
+

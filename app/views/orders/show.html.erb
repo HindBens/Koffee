@@ -1,0 +1,5 @@
+<h2>Order no <%= @order.id %></h2>
+<% @order.order_products.each do |p| %>
+<p><%= p.product.title %></p>
+
+<% end %>
